@@ -1,0 +1,23 @@
+<!--button class="btn btn-link-custom btn-new" [routerLink]="['/']">Atrás</button-->
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="text-center">
+      <h2>{{model.title}} <small>{{model.category.name}}</small></h2>
+      <abbr title="Lenguaje de programación" class="language">({{model.language.name}})</abbr>
+    </div>
+    
+
+    <blockquote class="comment">
+      <div [innerHTML]="model.comment"></div>
+    </blockquote>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+    <div id="ace-editor" class="form-control code" style="height: 300px; margin-bottom: 10px;"></div>
+    <button class="btn btn-link-custom btn-new" [routerLink]="['/']">Atrás</button>
+  </div>
+</div>
+

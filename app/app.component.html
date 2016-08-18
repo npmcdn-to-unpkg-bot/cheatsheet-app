@@ -1,0 +1,111 @@
+<div class="container">
+  <!-- ############################# Header ############################### -->
+  <header id="main-header">
+    <div class="row"><!-- Logo -->
+      <a class="logo col-xs-10" [routerLink]="['']">
+        <h1>Cheat Sheets</h1>
+        <h2>for developers!</h2>
+      </a>
+      <div class="col-xs-2">
+        <a class="btn btn-link-custom btn-login" data-toggle="modal" data-target="#loginModal" *ngIf="!isUserLogin()">
+          Log-in <span class="glyphicon glyphicon-log-in"></span>
+        </a>
+        <a class="btn btn-link-custom btn-login" data-toggle="modal" data-target="#logoutModal" *ngIf="isUserLogin()">
+          {{username}} <span class="caret"></span>
+        </a>
+       
+      </div>
+    </div>
+    <div class="row"><!-- Menu -->
+      <div class="col-xs-12">
+            <nav id="main-menu" class="navbar navbar-default" [hidden]="!isUserLogin()">
+              <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                  <ul class="nav navbar-nav navbar-right">
+                    <li [class.active]="isCurrentRoute('')"><a href="#" [routerLink]="['']">Inicio</a></li>
+                    <li [class.active]="isCurrentRoute('categories')"><a href="#" [routerLink]="['categories']">Categorias</a></li>
+                    <li [class.active]="isCurrentRoute('languages')"><a href="#" [routerLink]="['languages']">Lenguajes</a></li>
+                    <li [class.active]="isCurrentRoute('cheatsheets')"><a href="#" [routerLink]="['cheatsheets']">Cheat Sheets</a></li>
+                    <li [class.active]="isCurrentRoute('users')"  *ngIf="isAdminUserLogin()"><a href="#" [routerLink]="['users']">Usuarios</a></li>
+                    <li [class.active]="isCurrentRoute('database')" *ngIf="isAdminUserLogin()"><a href="#" [routerLink]="['database']">Base Datos</a></li>
+                  </ul>
+                </div><!-- /.navbar-collapse -->
+              </div><!-- /.container-fluid -->
+            </nav>
+          </div>
+    </div>
+    <div class="row">
+      <hr style="border-color:#DDEDF9" />
+    </div>
+  </header>
+
+  <!-- Login Modal -->
+<div class="modal fade" id="loginModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Login</h4>
+        </div>
+        <div class="modal-body" style="margin-top:10px;">
+          <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+            <div class="form-group has-feedback" [class.has-error]="errorLogin">
+              <input type="email" class="form-control" [(ngModel)]="loginModel.email" name="email" placeholder="email" required>
+            </div>
+            <div class="form-group has-feedback" [class.has-error]="errorLogin">
+              <input type="password" class="form-control" [(ngModel)]="loginModel.password" name="password" placeholder="password" required>
+            </div>
+            <div class="form-group has-error" style="margin-top: 20px" [hidden]="!showError">
+              <label id="login-err" class="control-label">{{msgErrorLogin}}</label>
+            </div>
+            <div class="modal-footer">
+          <button type="button" class="btn btn-link-custom" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-link-custom">Login</button>
+        </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logout Modal -->
+<div class="modal fade" id="logoutModal" role="dialog" style="position:fixed; left:auto; right:10px;">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">{{username}}</h4>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-link-custom" data-dismiss="modal" (click)="editUser()">Editar perfil</button>
+          <button type="submit" class="btn btn-link-custom" data-dismiss="modal" (click)="logout()">Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ############################# Content ############################## -->
+  
+  <router-outlet></router-outlet>
+
+  <!-- ############################# Footer ############################### -->
+  
+  <footer id="main-footer">
+    <div class="row">
+
+    </div>
+  </footer>
+
+  </div>

@@ -1,0 +1,44 @@
+<div id="main-content">
+    <div class="row">
+              
+              <div class="panel panel-default col-xs-12">
+                <div class="panel-body panel-search">
+                  <div class="row">
+                    <div class="col-xs-1">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-xs-10">
+                      <input type="search" name="search" placeholder="Buscar">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel panel-default panel-last-updates col-md-3 hidden-xs">
+                <div class="panel-heading">Ultimas novedades</div>
+                <div class="panel-body">
+                  <div class="list-group">
+                    <a class="list-group-item"><strong>Javascript</strong> - Variables</a>
+                    <a class="list-group-item"><strong>C#</strong> - Clases</a>
+                    <a class="list-group-item"><strong>C#</strong> - Interfaces</a>
+                    <a class="list-group-item"><strong>C#</strong> - Interfaces</a>
+                    <a class="list-group-item"><strong>C#</strong> - Interfaces</a>
+                  </div>
+                </div>
+              </div>
+
+      <div *ngFor="let category of categories">
+        <div class="panel panel-default col-xs-12 col-sm-8">
+          <div class="panel-heading">{{category.name}}</div>
+          <div class="panel-body">
+            <div class="list-group">
+              <div *ngFor="let cheatsheet of category.cheatsheets">
+                <a class="list-group-item" (click)="viewCheatSheet(cheatsheet.id)">{{cheatsheet.title}}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+</div>

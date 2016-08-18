@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        <div class="row">
+            <h3 class="form-title">Crear Chuleta</h3>
+        </div>
+        
+        <form (ngSubmit)="onSubmit()" #newCheatSheetForm="ngForm">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Título" name="title" [(ngModel)]="model.title" required>
+            </div>
+            <div class="form-group">
+                <label class="control-label" style="margin-top: 20px;">Comentario:</label>
+                <textarea class="form-control" name="comment" id="commentEditor" rows="10" placeholder="Comentario"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Categoría:</label>
+              <select class="form-control" name="category" [(ngModel)]="model.category">
+                <option class="form-control" *ngFor="#category of categories" [ngValue]="category">{{ category.name }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Lenguaje:</label>
+              <select class="form-control" name="language" [(ngModel)]="model.language" (ngModelChange)="changeLanguageEditor()">
+                <option class="form-control" *ngFor="#language of languages" [ngValue]="language">{{ language.name }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label" style="margin-top: 20px;">Código:</label>
+                <div id="ace-editor" class="form-control" style="height: 300px;"></div>
+            </div>
+            <div class="form-group has-error" style="margin-top: 20px" [hidden]="!showMsgErr">
+                    <label id="form-err" class="control-label">{{ msgError }}</label><br />
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <a class="btn btn-lg btn-link-custom col-xs-4 col-sm-3" [routerLink]="['/cheatsheets']">Cancelar</a>
+                    <button class="btn btn-lg btn-link-custom col-xs-6 col-xs-offset-2 col-sm-4 col-sm-offset-4">Crear</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

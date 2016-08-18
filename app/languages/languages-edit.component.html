@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        <div class="row">
+            <h3 class="form-title">Editar Lenguaje</h3>
+        </div>
+        
+        <form (ngSubmit)="onSubmit()" #editLanguageForm="ngForm">
+            <div  class="form-group has-feedback" [class.has-error]="extensionNotExists">
+                <input type="text" class="form-control" placeholder="Extensión" name="extension" [(ngModel)]="model.extension" required disabled>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Nombre" name="name" [(ngModel)]="model.name" required>
+            </div>
+            <div class="form-group has-error" style="margin-top: 20px" [hidden]="!showMsgErr">
+                    <label id="form-err" class="control-label">{{ msgError }}</label><br />
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <a class="btn btn-lg btn-link-custom col-xs-4 col-sm-3" [routerLink]="['/languages']">Cancelar</a>
+                    <button class="btn btn-lg btn-link-custom col-xs-6 col-xs-offset-2 col-sm-4 col-sm-offset-4" [disabled]="extensionNotExists">Guardar</button>
+                </div>
+            </div>
+            <div class="form-group" [hidden]="extensionNotExists">
+                <div class="row">
+                    <a class="btn btn-lg btn-danger-custom col-xs-12" style="margin: 30px 0 20px 0;" data-toggle="modal" data-target="#deleteModal">Borrar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+ <!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" role="dialog" style="position:fixed;">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Seguro que quieres borrar el lengueje {{model.name}} ?</h4>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-link-custom" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-danger-custom" data-dismiss="modal" (click)="goDelete()">Borrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
