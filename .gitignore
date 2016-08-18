@@ -29,6 +29,14 @@ build/Release
 # Dependency directories
 node_modules
 jspm_packages
+typings
+
+# Ignore app/*.map and app/*.js
+app/*.js
+app/*.map
+app/**/*.js
+app/**/*.map
+app/api.*
 
 # Optional npm cache directory
 .npm
