@@ -36,7 +36,6 @@ app/*.js
 app/*.map
 app/**/*.js
 app/**/*.map
-app/api.*
 
 # Optional npm cache directory
 .npm
