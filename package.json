@@ -5,7 +5,7 @@
   "author": "Omar Marin Pastor",
   "license": "ISC",
   "scripts": {
-    "start-dev": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "start-dev": "tsc && concurrently \"npm run tsc:w\" \"npm run start\" ",
     "start": "lite-server",
     "postinstall": "typings install",
     "tsc": "tsc",
