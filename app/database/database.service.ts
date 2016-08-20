@@ -43,11 +43,32 @@ export class DatabaseService {
   }
 
   import(database:Database, token:string): Promise<boolean>{
-      return null;
+    return this.http.post(API.data,
+    database.databaseJSON,
+    {headers: this.getAuthHeader(token)})
+    .toPromise()
+    .then(res => {
+      if(res.status === 200){
+          return res.json();
+        }else{
+          throw res;
+        }
+    })
+    .catch(err => {this.generateError(err.status)});
   }
 
   clear(token:string): Promise<boolean>{
-      return null;
+    return this.http.delete(API.data,
+    {headers: this.getAuthHeader(token)})
+    .toPromise()
+    .then(res => {
+      if(res.status === 200){
+          return res.json();
+        }else{
+          throw res;
+        }
+    })
+    .catch(err => {this.generateError(err.status)});
   }
 
   generateError(status:number, msg?:string):Error{

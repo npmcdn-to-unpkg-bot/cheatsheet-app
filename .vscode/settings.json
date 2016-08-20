@@ -1,5 +1,7 @@
 // Coloque su configuración en este archivo para sobrescribir la configuración predeterminada y de usuario.
 {
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
   "files.exclude": {
         "**/*.js.map": true,
         "**/*.js": {"when": "$(basename).ts"}
