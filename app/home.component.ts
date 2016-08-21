@@ -21,9 +21,22 @@ export class HomeComponent implements OnInit{
   ){}
 
   ngOnInit(){
+    this.getCheatSheets();
+    this.getLatestCheatSheets();
+  }
+
+  getCheatSheets(){
     this._CategoriesService.getAllWithCheatSheetsList()
     .then(res => {
       this.categories = res;
+    })
+    .catch();
+  }
+
+  getLatestCheatSheets(){
+    this._CheatSheetsService.getLatest()
+    .then(res => {
+      this.latestCheatSheets = res;
     })
     .catch();
   }

@@ -17,12 +17,8 @@
               <div class="panel panel-default panel-last-updates col-md-3 hidden-xs">
                 <div class="panel-heading">Ultimas novedades</div>
                 <div class="panel-body">
-                  <div class="list-group">
-                    <a class="list-group-item"><strong>Javascript</strong> - Variables</a>
-                    <a class="list-group-item"><strong>C#</strong> - Clases</a>
-                    <a class="list-group-item"><strong>C#</strong> - Interfaces</a>
-                    <a class="list-group-item"><strong>C#</strong> - Interfaces</a>
-                    <a class="list-group-item"><strong>C#</strong> - Interfaces</a>
+                  <div class="list-group" *ngFor="let cheatsheet of latestCheatSheets">
+                    <a class="list-group-item" (click)="viewCheatSheet(cheatsheet.id)"><strong>{{cheatsheet.category.name}}</strong> - {{cheatsheet.title}}</a>
                   </div>
                 </div>
               </div>

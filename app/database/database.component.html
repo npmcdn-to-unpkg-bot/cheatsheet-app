@@ -16,7 +16,7 @@
             </div>
             <input id="uploadFile" class="form-control" placeholder="...." disabled="disabled" [(ngModel)]="fileNameImport" />
             <p style="padding: 10px;">
-              <button class="btn btn-link-custom" style="float:right;">Guardar</button>
+              <button class="btn btn-link-custom" style="float:right;" (click)="saveImportFile()">Guardar</button>
             </p>
           </div>
         </div>
@@ -26,6 +26,13 @@
         <div class="panel-heading">Exportar</div>
         <div class="panel-body">
           <a class="btn btn-link-custom" #itemExport (click)="getExportData(itemExport)">Exportar a archivo</a>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Borrar</div>
+        <div class="panel-body">
+          <a class="btn btn-link-custom" #itemExport (click)="clearDatabase()">Borrar base de datos</a>
         </div>
       </div>
   </div>

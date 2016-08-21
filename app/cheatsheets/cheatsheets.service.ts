@@ -29,11 +29,36 @@ export class CheatSheetsService {
   }
 
   getAll(): Promise<CheatSheet[]>{
-      return this.http.get(API.categories,
+      return this.http.get(API.cheatsheets,
       {headers: this.getHeader()})
       .toPromise()
       .then(response => {
+        let jsonCheatsheets:any[] = response.json().cheatsheets;
         let cheatsheets:CheatSheet[];
+
+        jsonCheatsheets.forEach(c => {
+          cheatsheets.push(CheatSheet.fromJson(c));
+        });
+        return cheatsheets;
+      })
+      .catch(err => {
+
+      });
+  }
+
+  getLatest(): Promise<CheatSheet[]>{
+      return this.http.get(API.cheatsheets + '/latest',
+      {headers: this.getHeader()})
+      .toPromise()
+      .then(response => {
+        let jsonCheatsheets:any[] = response.json().cheatsheets;
+        let cheatsheets:CheatSheet[] = [];
+
+        jsonCheatsheets.forEach(c => {
+          let cheatsheet:CheatSheet = CheatSheet.fromJson(c);
+          cheatsheets.push(cheatsheet);
+        });
+        
         return cheatsheets;
       })
       .catch(err => {

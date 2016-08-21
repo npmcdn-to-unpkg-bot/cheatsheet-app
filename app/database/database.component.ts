@@ -27,7 +27,6 @@ export class DatabaseComponent {
     this.fileToJSON(item.files[0])
     .then(res => {
       this.database = new Database(res);
-      this.saveImportFile();
     })
     .catch(e => {
       this.msgError = 'Error al importar el fichero: ' + e.message;
@@ -58,7 +57,9 @@ export class DatabaseComponent {
   saveImportFile(){
     this._DatabaseService
     .import(this.database, this._AuthService.getToken())
-    .then(() => alert('OK'))
+    .then(() => {
+      alert('ok');
+    })
     .catch(err => {
       this.msgError = err.message;
       this.showMsgError = true;
