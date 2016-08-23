@@ -8,7 +8,7 @@
                       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                     </div>
                     <div class="col-xs-10">
-                      <input type="search" name="search" placeholder="Buscar">
+                      <input type="search" name="search" placeholder="Buscar" [(ngModel)]="filterText">
                     </div>
                   </div>
                 </div>
@@ -23,12 +23,12 @@
                 </div>
               </div>
 
-      <div *ngFor="let category of categories">
-        <div class="panel panel-default col-xs-12 col-sm-8">
+      <div *ngFor="let category of categories | filterCategories:filterText">
+        <div class="panel panel-default col-xs-12 col-sm-8" *ngIf="category.cheatsheets.length > 0">
           <div class="panel-heading">{{category.name}}</div>
           <div class="panel-body">
             <div class="list-group">
-              <div *ngFor="let cheatsheet of category.cheatsheets">
+              <div *ngFor="let cheatsheet of category.cheatsheets | filterCheatSheets:filterText">
                 <a class="list-group-item" (click)="viewCheatSheet(cheatsheet.id)">{{cheatsheet.title}}</a>
               </div>
             </div>

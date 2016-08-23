@@ -6,6 +6,8 @@ import { AuthService } from '../auth.service';
 
 import 'rxjs/Rx';
 
+declare var jQuery:any;
+
 @Component({
   templateUrl: 'app/database/database.component.html',
   providers: [DatabaseService]
@@ -15,6 +17,8 @@ export class DatabaseComponent {
   database:Database;
   msgError:string;
   showMsgError:boolean = false;
+  msgInfoTitle:string;
+  msgInfo:string;
 
   constructor(
     private _DatabaseService:DatabaseService,
@@ -58,7 +62,9 @@ export class DatabaseComponent {
     this._DatabaseService
     .import(this.database, this._AuthService.getToken())
     .then(() => {
-      alert('ok');
+      this.msgInfoTitle = "Importar base de datos";
+      this.msgInfo = "La base de datos se ha importado con éxito";
+      jQuery('#confirmModal').modal('show');
     })
     .catch(err => {
       this.msgError = err.message;
@@ -74,6 +80,9 @@ export class DatabaseComponent {
       a.href = window.URL.createObjectURL(blob);
       a.download = "cheatsheets_db.back";
       a.click();
+      this.msgInfoTitle = "Exportar base de datos";
+      this.msgInfo = "La base de datos se ha exportado en formato JSON a un fichero llamado (cheatsheets_db.back)";
+      jQuery('#confirmModal').modal('show');
     })
     .catch(err => {
       this.msgError = err.message;
@@ -85,7 +94,7 @@ export class DatabaseComponent {
     this._DatabaseService
     .clear(this._AuthService.getToken())
     .then(() => {
-      localStorage.clear();
+      this._AuthService.logout();
     })
     .catch(err => {
       this.msgError = err.message;

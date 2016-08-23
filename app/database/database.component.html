@@ -32,8 +32,45 @@
       <div class="panel panel-default">
         <div class="panel-heading">Borrar</div>
         <div class="panel-body">
-          <a class="btn btn-link-custom" #itemExport (click)="clearDatabase()">Borrar base de datos</a>
+          <a class="btn btn-link-custom" data-toggle="modal" data-target="#clearModal">Borrar base de datos</a>
         </div>
       </div>
   </div>
 </div>
+
+ <!-- Confirm Modal -->
+<div class="modal fade" id="confirmModal" role="dialog" style="position:fixed;">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">{{msgInfoTitle}}</h4>
+        </div>
+        <div class="modal-body" style="margin-top:10px;">
+          {{ msgInfo }}
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-link-custom" data-dismiss="modal">Leído</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <!-- Confirm clear Modal -->
+<div class="modal fade" id="clearModal" role="dialog" style="position:fixed;">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Borrar base de datos</h4>
+        </div>
+        <div class="modal-body" style="margin-top:10px;">
+          Se va a borrar la base de datos completa. Se quedará el usuario (root@root) con contraseña (1234)
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-link-custom" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-danger-custom" data-dismiss="modal" (click)="clearDatabase()">Borrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
