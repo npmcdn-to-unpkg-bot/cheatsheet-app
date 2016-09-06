@@ -19,7 +19,7 @@
     '@angular/router-deprecated': 'node_modules/@angular/router-deprecated',
     'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api', // get latest
     'rxjs':                       'node_modules/rxjs',
-    'ts':                         'https://npmcdn.com/plugin-typescript@4.0.10/lib/plugin.js',
+    'ts':                         'https://unpkg.com/plugin-typescript@4.0.10/lib/plugin.js',
     'typescript':                 'node_modules/typescript/lib/typescript.js',
  };
 
